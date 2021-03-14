@@ -1,0 +1,485 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500&family=Roboto:wght@400;500;700&display=swap");
+$products: "wine", "beer", "cake", "sushi", "ice-cream", "shaurma", "chicken",
+  "fruits";
+
+// ===MIXINS===
+@mixin poppins($fw, $fz) {
+  font-family: "Poppins", sans-serif;
+  font-weight: $fw;
+  font-size: $fz;
+}
+
+@mixin open-sans($fw, $fz) {
+  font-family: "Open Sans", sans-serif;
+  font-weight: $fw;
+  font-size: $fz;
+}
+
+@mixin roboto($fw, $fz) {
+  font-family: "Roboto", sans-serif;
+  font-weight: $fw;
+  font-size: $fz;
+}
+
+@mixin wh($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin flex-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@mixin animate-nav {
+  transition: 0.4s ease-in-out;
+  -o-transition: 0.4s ease-in-out;
+  -moz-transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in-out;
+}
+
+// ===/MIXINS===
+
+// ===VARIABLES===
+$sidebar-bgcolor: #f3f4f9;
+$active-color: #34abe0;
+$grey-col: #d6d6d6;
+$h-black: #808080;
+$link-border-size: 3px;
+$main-fz: 16px;
+$com-mg: 40px;
+$nav-w: 240px;
+$nav-w-m: 210px;
+$nav-w-s: 120px;
+$nav-w-cl-m: $nav-w - 140px;
+$nav-w-cl-sm: $nav-w - 228px;
+$main-bgcolor: #fafafa;
+$card-hover-color: #df212d;
+// ===/VARIABLES===
+
+// ===COMMON===
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 5px;
+}
+
+.header-and-main {
+  margin-left: $nav-w;
+  height: 100%;
+}
+
+.outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  @include wh(48px, 106px);
+  @include animate-nav;
+
+  top: 0;
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: url("../images/icon/template.svg") center no-repeat;
+
+  #close-btn {
+    display: none;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  &:hover {
+    border: 0.5px solid grey;
+    border-radius: 5px;
+  }
+}
+
+// ===/COMMON===
+
+// ===SIDEBAR==
+.sidenav {
+  @include wh($nav-w, 100%);
+  @include animate-nav;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $sidebar-bgcolor;
+}
+
+.logo-wrapper {
+  @include flex-wrapper;
+
+  margin: $com-mg 0 $com-mg $com-mg;
+
+  img {
+    @include wh(50px, 50px);
+  }
+
+  h1 {
+    @include poppins(500, $main-fz);
+
+    padding-left: 10px;
+  }
+}
+
+.link-wrapper {
+  @include flex-wrapper;
+
+  border-left: $link-border-size solid transparent;
+  cursor: pointer;
+  margin-bottom: $com-mg;
+
+  img {
+    margin-left: $com-mg - $link-border-size;
+
+    @include wh(25px, 25px);
+  }
+
+  a {
+    @include open-sans(600, $main-fz);
+
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding-left: 10px;
+    transition: 0.5s ease-in-out;
+  }
+
+  &--active {
+    border-left: $link-border-size solid $active-color;
+
+    a {
+      color: $active-color;
+    }
+  }
+}
+// ===/SIDEBAR===
+
+// ===HEADER===
+
+.header-wrapper-outer {
+  border-bottom: 1px solid $grey-col;
+}
+
+.header-wrapper-inner {
+  @include wh(90%, 200px);
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  h1 {
+    @include open-sans(600, 28px);
+
+    color: black;
+    margin: 0;
+  }
+
+  input {
+    @include open-sans(400, 18px);
+    @include wh(100%, 52px);
+
+    outline: none;
+    border-radius: 50px;
+    background: url("../images/icon/search.svg") no-repeat 15px 15px;
+    background-size: auto, auto;
+    border: 1px solid $grey-col;
+    padding-left: 44px;
+    color: black;
+    vertical-align: middle;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+}
+// ===/HEADER===
+
+// ===MAIN===
+main {
+  background-color: $main-bgcolor;
+  height: 100%;
+}
+
+.main {
+  padding: 25px 0 25px 0;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.card {
+  @include wh(347px, 161px);
+
+  @each $product in $products {
+    &_#{$product} {
+      background: url("../images/coupons/#{$product}.svg") center no-repeat padding-box;
+    }
+  }
+
+  filter: drop-shadow(1px 0 0.2rem rgba(97, 94, 95, 0.404));
+  letter-spacing: 0.1em;
+  text-overflow: ellipsis;
+  overflow-x: visible;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0);
+  position: relative;
+
+  &:hover {
+    border-color: $card-hover-color;
+    cursor: pointer;
+  }
+
+  h3 {
+    @include roboto(600, $main-fz);
+  }
+
+  h4,
+  h2 {
+    @include roboto(400, $main-fz);
+
+    color: $h-black;
+  }
+
+  h1 {
+    @include roboto(500, $main-fz + 20px);
+
+    color: $card-hover-color;
+  }
+
+  h2 {
+    letter-spacing: 6px;
+    line-height: 16px;
+  }
+
+  :not(h4) {
+    text-transform: uppercase;
+  }
+
+  &__inner-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 15px;
+  }
+}
+
+.card:hover::before,
+.card:hover::after {
+  display: block;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid $card-hover-color;
+  border-left-style: none;
+  border-bottom-style: none;
+  top: 50%;
+  background-image: linear-gradient(to left bottom, #999394, #bdb7bb, #cec9ce, #e7e2e7, $main-bgcolor);
+}
+
+.card::before {
+  left: 0;
+  transform: translate(-4.4px, -50%) rotate(45deg);
+}
+
+.card::after {
+  right: 0;
+  transform: translate(4.4px, -50%) rotate(-135deg);
+}
+
+// ===/MAIN===
+
+// ===MEDIA QUERIES===
+@media screen and (max-width: 768px) {
+  .header-and-main {
+    @include animate-nav;
+
+    margin-left: $nav-w-cl-m;
+
+    &--active {
+      @include animate-nav;
+
+      margin-left: $nav-w-m;
+    }
+  }
+
+  .logo-wrapper {
+    h1 {
+      display: none;
+    }
+
+    img {
+      @include wh(24px, 24px);
+    }
+
+    height: 35px;
+  }
+
+  .header-wrapper-inner {
+    align-items: flex-end;
+    height: 180px;
+  }
+
+  .sidenav {
+    width: $nav-w-cl-m;
+
+    a {
+      opacity: 0;
+    }
+
+    .button-container {
+      display: flex;
+      left: $nav-w-cl-m;
+    }
+
+    &--active {
+      @include animate-nav;
+
+      width: $nav-w-m;
+
+      h1 {
+        display: block;
+        font-size: 14px;
+      }
+
+      a {
+        opacity: 1;
+      }
+
+      .button-container {
+        left: $nav-w-m;
+
+        #open-btn {
+          display: none;
+        }
+
+        #close-btn {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header-and-main {
+    @include animate-nav;
+
+    margin-left: $nav-w-cl-sm;
+
+    .header-wrapper-inner {
+      height: 170px;
+    }
+
+    &--active {
+      @include animate-nav;
+
+      margin-left: $nav-w-s;
+    }
+  }
+
+  .header-wrapper-inner {
+    #header-title {
+      font-size: $main-fz + 2px;
+    }
+
+    input {
+      font-size: $main-fz - 2px;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .sidenav {
+    width: $nav-w-cl-sm;
+
+    .button-container {
+      display: flex;
+      left: $nav-w-cl-sm;
+    }
+
+    &--active {
+      @include animate-nav;
+
+      width: $nav-w-s;
+
+      .logo-wrapper {
+        @include flex-wrapper;
+
+        margin: $com-mg $com-mg $com-mg $com-mg/2;
+      }
+
+      .link-wrapper {
+        @include flex-wrapper;
+
+        img {
+          display: none;
+        }
+
+        a {
+          font-size: $main-fz * 0.8;
+        }
+      }
+
+      h1 {
+        display: block;
+        font-size: $main-fz * 0.75;
+      }
+
+      a {
+        opacity: 1;
+      }
+
+      .button-container {
+        left: $nav-w-s;
+
+        #open-btn {
+          display: none;
+        }
+
+        #close-btn {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .logo-wrapper,
+  .link-wrapper {
+    display: none;
+  }
+
+  .card {
+    @include wh(240px, 110px);
+  }
+}
+// ===/MEDIA QUERIES===
