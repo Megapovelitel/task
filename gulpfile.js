@@ -4,7 +4,7 @@ const browserSync = require("browser-sync").create();
 const gulpStylelint = require("gulp-stylelint");
 
 const style = () => {
-  return src("./css/**/*.scss")
+  return src("./assets/css/**/*.scss")
     .pipe(
       gulpStylelint({
         reporters: [
@@ -16,7 +16,7 @@ const style = () => {
       })
     )
     .pipe(sass())
-    .pipe(dest("./css/"))
+    .pipe(dest("./assets/css/"))
     .pipe(browserSync.stream());
 }
 
@@ -27,9 +27,9 @@ const watcher = () => {
     },
     notify: false,
   });
-  watch("./css/**/*.scss", style);
+  watch("./assets/css/**/*.scss", style);
   watch("./*.html").on("change", browserSync.reload);
-  watch("./js/**/*.js").on("change", browserSync.reload);
+  watch("./assets/js/**/*.js").on("change", browserSync.reload);
 };
 
 exports.style = style;

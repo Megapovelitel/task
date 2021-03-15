@@ -4,55 +4,74 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="shortcut icon" href="./images/icon/logo.svg" type="image/png" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/icon/logo.svg"
+      type="image/png"
+    />
     <title>beco</title>
   </head>
   <body>
     <!-- Sidebar -->
     <aside class="sidenav">
       <div class="logo-wrapper" id="logo">
-        <img src="./images/icon/logo.svg" />
-        <h1>BECO</h1>
+        <img class="logo-wrapper__img" src="./assets/images/icon/logo.svg" />
+        <h1 class="logo-wrapper__txt">BECO</h1>
       </div>
       <div class="button-container">
-        <button id="open-btn">
-          <img src="/images/icon/burger menu.svg" />
+        <button class="button-container__button button-container__button_open">
+          <img src="./assets/images/icon/burger menu.svg" />
         </button>
-        <button id="close-btn">
-          <img src="/images/icon/menu exit.svg" />
+        <button class="button-container__button button-container__button_close">
+          <img src="./assets/images/icon/menu exit.svg" />
         </button>
       </div>
-      <div class="link-wrapper" id="catalog">
-        <img src="./images/icon/default/catalog.svg" />
-        <a href="#">Каталог</a>
+      <div class="link-wrapper" id="link-catalog">
+        <img
+          class="link-wrapper__img"
+          src="./assets/images/icon/default/catalog.svg"
+        />
+        <a class="link-wrapper__link" href="#">Каталог</a>
       </div>
-      <div class="link-wrapper" id="health">
-        <img src="./images/icon/default/health.svg" />
-        <a href="#">Здоровье</a>
+      <div class="link-wrapper" id="link-health">
+        <img
+          class="link-wrapper__img"
+          src="./assets/images/icon/default/health.svg"
+        />
+        <a class="link-wrapper__link" href="#">Здоровье</a>
       </div>
-      <div class="link-wrapper" id="beauty">
-        <img src="./images/icon/default/beauty.svg" />
-        <a href="#">Красота</a>
+      <div class="link-wrapper" id="link-beauty">
+        <img
+          class="link-wrapper__img"
+          src="./assets/images/icon/default/beauty.svg"
+        />
+        <a class="link-wrapper__link" href="#">Красота</a>
       </div>
-      <div class="link-wrapper link-wrapper--active" id="enjoy">
-        <img src="./images/icon/active/enjoy.svg" />
-        <a href="#">Развлечения</a>
+      <div class="link-wrapper link-wrapper_active" id="link-enjoy">
+        <img
+          class="link-wrapper__img"
+          src="./assets/images/icon/active/enjoy.svg"
+        />
+        <a class="link-wrapper__link" href="#">Развлечения</a>
       </div>
-      <div class="link-wrapper" id="car">
-        <img src="./images/icon/default/car.svg" />
-        <a href="#">Авто</a>
+      <div class="link-wrapper" id="link-car">
+        <img
+          class="link-wrapper__img"
+          src="./assets/images/icon/default/car.svg"
+        />
+        <a class="link-wrapper__link" href="#">Авто</a>
       </div>
     </aside>
     <!-- /Sidebar -->
 
     <section class="header-and-main">
       <!-- Header -->
-      <header class="header-wrapper-outer outer-container">
-        <div class="header-wrapper-inner">
-          <h1 id="header-title">Развлечения</h1>
-          <input id="search-input" placeholder="Какой магазин вам нужен?" />
+      <header class="header outer-container">
+        <div class="header__wrapper-inner">
+          <h1 class="header__title">Развлечения</h1>
+          <input class="header__input" placeholder="Какой магазин вам нужен?" />
         </div>
       </header>
       <!-- /Header -->
@@ -62,87 +81,154 @@
         <div class="main">
           <div class="card card_wine">
             <div class="card__inner-wrapper">
-              <div class="card__top">
-                <h3>пробка на мира</h3>
-                <h4>Вечер для двоих</h4>
+              <div class="card-top">
+                <p class="card-top__text-top">пробка на мира</p>
+                <p class="card-top__text-bottom">Вечер для двоих</p>
               </div>
-              <div class="card__bottom">
-                <h1>50%</h1>
-                <h2>скидка</h2>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">50%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
               </div>
             </div>
           </div>
           <div class="card card_beer">
-            <h3>кино и немцы</h3>
-            <h4>Бесплатный бокал пива</h4>
-            <h1>ВАРВАР</h1>
-            <h2>промокод</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">кино и немцы</p>
+                <p class="card-top__text-bottom">Бесплатный бокал пива</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">ВАРВАР</p>
+                <p class="card-bottom__text-bottom">промокод</p>
+              </div>
+            </div>
           </div>
           <div class="card card_cake">
-            <h3>valery cakes</h3>
-            <h4>Торт</h4>
-            <h1>30%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">valery cakes</p>
+                <p class="card-top__text-bottom">Торт</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">30%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_sushi">
-            <h3>sushi sell</h3>
-            <h4>Набор "Праздник"</h4>
-            <h1>45%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">sushi sell</p>
+                <p class="card-top__text-bottom">Набор "Праздник"</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">45%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_fruits">
-            <h3>mangosteen</h3>
-            <h4>Фрукт в подарок</h4>
-            <h1>j130</h1>
-            <h2>купон</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">mangosteen</p>
+                <p class="card-top__text-bottom">Фрукт в подарок</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">j130</p>
+                <p class="card-bottom__text-bottom">купон</p>
+              </div>
+            </div>
           </div>
           <div class="card card_chicken">
-            <h3>теленок табака</h3>
-            <h4>Стейк "Мачете"</h4>
-            <h1>20%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">теленок табака</p>
+                <p class="card-top__text-bottom">Стейк "Мачете"</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">20%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_shaurma">
-            <h3>fire food</h3>
-            <h4>Вторая шаурма в подарок</h4>
-            <h1>огонь</h1>
-            <h2>промокод</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">fire food</p>
+                <p class="card-top__text-bottom">Вторая шаурма в подарок</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">огонь</p>
+                <p class="card-bottom__text-bottom">промокод</p>
+              </div>
+            </div>
           </div>
           <div class="card card_ice-cream">
-            <h3>aroma cremeria</h3>
-            <h4>Джелато "Пармезан"</h4>
-            <h1>20%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">aroma cremeria</p>
+                <p class="card-top__text-bottom">Джелато "Пармезан"</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">20%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_wine">
-            <h3>пробка на мира</h3>
-            <h4>Вечер для двоих</h4>
-            <h1>50%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">пробка на мира</p>
+                <p class="card-top__text-bottom">Вечер для двоих</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">50%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_beer">
-            <h3>кино и немцы</h3>
-            <h4>Бесплатный бокал пива</h4>
-            <h1>ВАРВАР</h1>
-            <h2>промокод</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">кино и немцы</p>
+                <p class="card-top__text-bottom">Бесплатный бокал пива</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">ВАРВАР</p>
+                <p class="card-bottom__text-bottom">промокод</p>
+              </div>
+            </div>
           </div>
           <div class="card card_cake">
-            <h3>valery cakes</h3>
-            <h4>Торт</h4>
-            <h1>30%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">valery cakes</p>
+                <p class="card-top__text-bottom">Торт</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">30%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
           <div class="card card_sushi">
-            <h3>sushi sell</h3>
-            <h4>Набор "Праздник"</h4>
-            <h1>45%</h1>
-            <h2>скидка</h2>
+            <div class="card__inner-wrapper">
+              <div class="card-top">
+                <p class="card-top__text-top">sushi sell</p>
+                <p class="card-top__text-bottom">Набор "Праздник"</p>
+              </div>
+              <div class="card-bottom">
+                <p class="card-bottom__text-top">45%</p>
+                <p class="card-bottom__text-bottom">скидка</p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
       <!-- /Main -->
     </section>
 
-    <script src="./main.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+    <script src="./assets/js/links.js"></script>
   </body>
 </html>

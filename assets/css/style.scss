@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500&family=Roboto:wght@400;500;700&display=swap");
-$products: "wine", "beer", "cake", "sushi", "ice-cream", "shaurma", "chicken",
-  "fruits";
 
 // ===MIXINS===
 @mixin poppins($fw, $fz) {
@@ -55,6 +53,8 @@ $nav-w-cl-m: $nav-w - 140px;
 $nav-w-cl-sm: $nav-w - 228px;
 $main-bgcolor: #fafafa;
 $card-hover-color: #df212d;
+$products: "wine", "beer", "cake", "sushi", "ice-cream", "shaurma", "chicken",
+  "fruits";
 // ===/VARIABLES===
 
 // ===COMMON===
@@ -67,13 +67,7 @@ $card-hover-color: #df212d;
 html,
 body {
   height: 100%;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  margin: 5px;
+  margin: 0;
 }
 
 .header-and-main {
@@ -84,33 +78,6 @@ h4 {
 .outer-container {
   display: flex;
   justify-content: center;
-}
-
-.button-container {
-  @include wh(48px, 106px);
-  @include animate-nav;
-
-  top: 0;
-  display: none;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  background: url("../images/icon/template.svg") center no-repeat;
-
-  #close-btn {
-    display: none;
-  }
-}
-
-button {
-  border: none;
-  outline: none;
-  background-color: transparent;
-
-  &:hover {
-    border: 0.5px solid grey;
-    border-radius: 5px;
-  }
 }
 
 // ===/COMMON===
@@ -126,16 +93,43 @@ button {
   background-color: $sidebar-bgcolor;
 }
 
+.button-container {
+  @include wh(48px, 106px);
+  @include animate-nav;
+
+  top: 0;
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: url("../images/icon/template.svg") center no-repeat;
+
+  &__button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &:hover {
+      border: 0.5px solid grey;
+      border-radius: 5px;
+    }
+  }
+
+  &__button_close {
+    display: none;
+  }
+}
+
 .logo-wrapper {
   @include flex-wrapper;
 
   margin: $com-mg 0 $com-mg $com-mg;
 
-  img {
+  &__img {
     @include wh(50px, 50px);
   }
 
-  h1 {
+  &__txt {
     @include poppins(500, $main-fz);
 
     padding-left: 10px;
@@ -149,13 +143,13 @@ button {
   cursor: pointer;
   margin-bottom: $com-mg;
 
-  img {
-    margin-left: $com-mg - $link-border-size;
-
+  &__img {
     @include wh(25px, 25px);
+
+    margin-left: $com-mg - $link-border-size;
   }
 
-  a {
+  &__link {
     @include open-sans(600, $main-fz);
 
     text-decoration: none;
@@ -165,10 +159,10 @@ button {
     transition: 0.5s ease-in-out;
   }
 
-  &--active {
-    border-left: $link-border-size solid $active-color;
+  &_active {
+    border-color: $active-color;
 
-    a {
+    .link-wrapper__link {
       color: $active-color;
     }
   }
@@ -177,26 +171,26 @@ button {
 
 // ===HEADER===
 
-.header-wrapper-outer {
+.header {
   border-bottom: 1px solid $grey-col;
-}
 
-.header-wrapper-inner {
-  @include wh(90%, 200px);
+  &__wrapper-inner {
+    @include wh(90%, 200px);
 
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-evenly;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 
-  h1 {
+  &__title {
     @include open-sans(600, 28px);
 
     color: black;
     margin: 0;
   }
 
-  input {
+  &__input {
     @include open-sans(400, 18px);
     @include wh(100%, 52px);
 
@@ -219,24 +213,30 @@ button {
 // ===MAIN===
 main {
   background-color: $main-bgcolor;
-  height: 100%;
+  min-height: 100%;
 }
 
 .main {
-  padding: 25px 0 25px 0;
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 100%;
+  @include wh(90%, 100%);
+
+  margin: 40px 0 40px 0;
+  display: grid;
+  row-gap: 20px;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .card {
-  @include wh(347px, 161px);
+  height: 166px;
 
   @each $product in $products {
     &_#{$product} {
-      background: url("../images/coupons/#{$product}.svg") center no-repeat padding-box;
+      background:
+        url("../images/coupons/#{$product}.svg")
+        center
+        no-repeat
+        padding-box;
+      background-size: cover;
     }
   }
 
@@ -253,38 +253,51 @@ main {
     cursor: pointer;
   }
 
-  h3 {
-    @include roboto(600, $main-fz);
-  }
-
-  h4,
-  h2 {
-    @include roboto(400, $main-fz);
-
-    color: $h-black;
-  }
-
-  h1 {
-    @include roboto(500, $main-fz + 20px);
-
-    color: $card-hover-color;
-  }
-
-  h2 {
-    letter-spacing: 6px;
-    line-height: 16px;
-  }
-
-  :not(h4) {
-    text-transform: uppercase;
+  p {
+    margin: 0;
+    color: black;
   }
 
   &__inner-wrapper {
+    @include wh(100%, 100%);
+
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     align-items: flex-start;
     justify-content: space-between;
-    margin: 15px;
+    padding: 15px;
+  }
+
+  .card-top {
+    &__text-top {
+      @include roboto(600, $main-fz);
+
+      text-transform: uppercase;
+    }
+
+    &__text-bottom {
+      @include roboto(400, $main-fz);
+
+      opacity: 0.5;
+    }
+  }
+
+  .card-bottom {
+    &__text-top {
+      @include roboto(500, $main-fz + 20px);
+
+      color: $card-hover-color;
+      text-transform: uppercase;
+    }
+
+    &__text-bottom {
+      @include roboto(400, $main-fz);
+
+      letter-spacing: 6px;
+      line-height: 16px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
   }
 }
 
@@ -296,7 +309,7 @@ main {
 .card::before,
 .card::after {
   content: "";
-  display: block;
+  display: none;
   position: absolute;
   width: 6px;
   height: 6px;
@@ -304,7 +317,15 @@ main {
   border-left-style: none;
   border-bottom-style: none;
   top: 50%;
-  background-image: linear-gradient(to left bottom, #999394, #bdb7bb, #cec9ce, #e7e2e7, $main-bgcolor);
+  background-image:
+    linear-gradient(
+      to left bottom,
+      #999394,
+      #bdb7bb,
+      #cec9ce,
+      #e7e2e7,
+      $main-bgcolor
+    );
 }
 
 .card::before {
@@ -326,28 +347,28 @@ main {
 
     margin-left: $nav-w-cl-m;
 
-    &--active {
+    &_active {
       @include animate-nav;
 
       margin-left: $nav-w-m;
     }
   }
 
+  .header__wrapper-inner {
+    align-items: flex-end;
+    height: 180px;
+  }
+
   .logo-wrapper {
-    h1 {
+    &__txt {
       display: none;
     }
 
-    img {
+    &__img {
       @include wh(24px, 24px);
     }
 
     height: 35px;
-  }
-
-  .header-wrapper-inner {
-    align-items: flex-end;
-    height: 180px;
   }
 
   .sidenav {
@@ -362,7 +383,7 @@ main {
       left: $nav-w-cl-m;
     }
 
-    &--active {
+    &_active {
       @include animate-nav;
 
       width: $nav-w-m;
@@ -379,13 +400,35 @@ main {
       .button-container {
         left: $nav-w-m;
 
-        #open-btn {
+        &__button_open {
           display: none;
         }
 
-        #close-btn {
+        &__button_close {
           display: block;
         }
+      }
+    }
+  }
+
+  .main {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card {
+    height: 130px;
+
+    .card-top,
+    .card-bottom {
+      &__text-top,
+      &__text-bottom {
+        font-size: 0.9em;
+      }
+    }
+
+    .card-bottom {
+      &__text-top {
+        font-size: 24px;
       }
     }
   }
@@ -397,23 +440,24 @@ main {
 
     margin-left: $nav-w-cl-sm;
 
-    .header-wrapper-inner {
+    .header__wrapper-inner {
+      align-items: flex-end;
       height: 170px;
     }
 
-    &--active {
+    &_active {
       @include animate-nav;
 
       margin-left: $nav-w-s;
     }
   }
 
-  .header-wrapper-inner {
-    #header-title {
+  .header {
+    &__title {
       font-size: $main-fz + 2px;
     }
 
-    input {
+    &__input {
       font-size: $main-fz - 2px;
       text-overflow: ellipsis;
     }
@@ -427,7 +471,7 @@ main {
       left: $nav-w-cl-sm;
     }
 
-    &--active {
+    &_active {
       @include animate-nav;
 
       width: $nav-w-s;
@@ -441,11 +485,11 @@ main {
       .link-wrapper {
         @include flex-wrapper;
 
-        img {
+        &__img {
           display: none;
         }
 
-        a {
+        &__link {
           font-size: $main-fz * 0.8;
         }
       }
@@ -462,11 +506,11 @@ main {
       .button-container {
         left: $nav-w-s;
 
-        #open-btn {
+        &__button_open {
           display: none;
         }
 
-        #close-btn {
+        &__button_close {
           display: block;
         }
       }
@@ -478,8 +522,26 @@ main {
     display: none;
   }
 
+  .main {
+    grid-template-columns: 1fr;
+  }
+
   .card {
-    @include wh(240px, 110px);
+    height: 140px;
+
+    .card-top,
+    .card-bottom {
+      &__text-top,
+      &__text-bottom {
+        font-size: 0.9em;
+      }
+    }
+
+    .card-bottom {
+      &__text-top {
+        font-size: 24px;
+      }
+    }
   }
 }
 // ===/MEDIA QUERIES===
